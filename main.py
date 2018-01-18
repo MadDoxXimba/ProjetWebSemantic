@@ -31,7 +31,7 @@ def queryParser(data):
 @app.route("/result", methods=['GET', 'POST'])
 def getForm():
     if request.method == 'POST':
-      result = request.form
+      result = request.form.getlist('key')
       # logic (db connection and sparkl query parser)
       
       
