@@ -9,16 +9,6 @@
     https://ontologie.herokuapp.com/
 
 ## Local debugging
-
-    ## Virtual env
-
-### Dependencies
-    2017-Pred-SNCF\requirements.txt
-    
-    Rapidminer studio and rapidminer ProM extension
-
-
-### For local debugging:
     
 Place in root directory (CMD or Powershell or Bash)
 
