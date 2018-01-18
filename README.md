@@ -4,7 +4,7 @@
 - @author: Quentin LEVAVASSEUR
 - @author: Valentin Bouchevreau
 
-## Pushing to branch master will deploy automatically on a web server
+## Pushing to branch master will deploy automatically to the web server below
 
     https://ontologie.herokuapp.com/
 
