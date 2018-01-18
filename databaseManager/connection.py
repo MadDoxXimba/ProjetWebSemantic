@@ -49,5 +49,7 @@ def connect():
             conn.close()
             print('Database connection closed.')
             
+            return 'PostgreSQL database version:' + str(db_version)
+            
 if __name__ == '__main__':
     connect()

@@ -1,4 +1,6 @@
 from flask import Flask, request
+from databaseManager import connection
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -7,7 +9,8 @@ def welcomePage():
     
 @app.route("/test")
 def testPage():
-    return "<strong style=\"'color':red\"> Ceci est un test...</strong>"
+    connection.connect()
+    return "<strong style=\"'color':red\">" + connection.connect() + "</strong>"
     
 @app.route("/query/<data>", methods=['GET', 'POST'])
 def queryParser(data):

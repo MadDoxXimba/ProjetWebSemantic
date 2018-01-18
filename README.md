@@ -55,3 +55,7 @@ in $WORKON_HOME
         1) set environement variable in postactivate (ex: export JAVA_HOME=/path/to/java/home)
         2) unset environement variable define in postactivate by declaring the following in postdeactivate : unset JAVA_HOME
     
+
+## Tutorials
+
+    http://www.postgresqltutorial.com/postgresql-python
