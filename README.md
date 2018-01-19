@@ -4,6 +4,8 @@
 - @author: Quentin LEVAVASSEUR
 - @author: Valentin Bouchevreau
 
+# APACHE FUSEKI Sparql Server refer to this repository: https://github.com/MadDoxXimba/apache_fuseki_heroku 
+
 ## Pushing to branch master will deploy automatically to the web server below
 
     https://ontologie.herokuapp.com/
