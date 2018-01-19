@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from databaseManager import connection
+from SPARQLWrapper import SPARQLWrapper, JSON
 import os
 import sys
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -31,13 +32,40 @@ def queryParser(data):
 @app.route("/result", methods=['GET', 'POST'])
 def getForm():
     if request.method == 'POST':
-      result = request.form.getlist('key')
-      # logic (db connection and sparkl query parser)
+        
+        # GET POST DATA on form submit
+        
+        result = request.form.getlist('key')
+        
+        # Connect to SPARQL SERVER      
+
+        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
+        
+        # QUERY THE SERVER
+        
+        sparql.setQuery("""
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            SELECT ?label
+            WHERE { <http://dbpedia.org/resource/Asturias> rdfs:label ?label }
+        """)
+        
+        # RESPONSE FROM SERVER
+        
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        
+        # JSON FORMAT
+        
+        print(results)
+        
+        
+        for result in results["results"]["bindings"]:
+            print("here")
+            print(result["label"]["value"])
       
-      
-      
-      # result for user
-      template = env.get_template('result.html')
-      return render_template(template, result = result)
+        # result for user
+        template = env.get_template('result.html')
+        
+    return render_template(template, result = result)
     
         
