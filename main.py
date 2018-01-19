@@ -33,20 +33,26 @@ def queryParser(data):
 def getForm():
     if request.method == 'POST':
         
+        '''Example 1'''
+        
         # GET POST DATA on form submit
         
         result = request.form.getlist('key')
         
         # Connect to SPARQL SERVER      
 
-        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
+        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
         
         # QUERY THE SERVER
         
         sparql.setQuery("""
-            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?label
-            WHERE { <http://dbpedia.org/resource/Asturias> rdfs:label ?label }
+            SELECT ?subject ?predicate ?object
+            WHERE {
+              ?subject ?predicate ?object
+            }
+            LIMIT 25
         """)
         
         # RESPONSE FROM SERVER
@@ -58,10 +64,6 @@ def getForm():
         
         print(results)
         
-        
-        for result in results["results"]["bindings"]:
-            print("here")
-            print(result["label"]["value"])
       
         # result for user
         template = env.get_template('result.html')
