@@ -1,5 +1,32 @@
 <html>
-    <FORM action=result method=post>
-    Query <INPUT type=text name=key id=key> <INPUT type=submit value="Recherche">
-    </FORM>
+    <header>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </header>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <p><strong>Projet Web Semantique - Année 2017 - 2018 - Informatique Décisionnel</strong></p>
+                    <p>@author: Jonathan YUE CHUN</p>
+                    <p>@author: Quentin LEVAVASSEUR</p>
+                    <p>@author: Valentin Bouchevreau</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <form action="result" method="post" class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" name="key" id="key" class="form-control" placeholder="SPARQL Query">
+                </div>
+                <button type="submit" class="btn btn-default">Rechercher</button>
+            </form>
+        </div>
+    </body>
 </html>
