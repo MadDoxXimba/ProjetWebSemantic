@@ -43,7 +43,7 @@ def getForm():
         print(str(result[0]))
         print(type(result))
         print(result[0])
-        
+
         # Connect to SPARQL SERVER      
 
         sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
@@ -73,7 +73,6 @@ def getForm():
         # JSON FORMAT
         
         print(results)
-        print(query)
 
         # result for user
         template = env.get_template('result.html')
