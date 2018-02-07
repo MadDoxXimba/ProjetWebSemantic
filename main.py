@@ -17,6 +17,11 @@ def welcomePage():
     template = env.get_template('queryform.html')
     return render_template(template)
     
+@app.route("/graph")
+def graphPage():
+    template = env.get_template('graph.html')
+    return render_template(template)
+    
 @app.route("/test")
 def testPage():
     connection.connect()
