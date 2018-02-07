@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 from databaseManager import connection
 from SPARQLWrapper import SPARQLWrapper, JSON
 import os
