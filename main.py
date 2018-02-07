@@ -39,6 +39,11 @@ def getForm():
         
         result = request.form.getlist('key')
         
+        print(result)
+        print(str(result[0]))
+        print(type(result))
+        print(result[0])
+        
         # Connect to SPARQL SERVER      
 
         sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
