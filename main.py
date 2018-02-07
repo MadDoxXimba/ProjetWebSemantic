@@ -59,8 +59,7 @@ def getForm():
         query += "LIMIT 200"
         '''
 
-        sparql.setQuery("""
-            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             PREFIX n1: <https://tpws/>
             SELECT DISTINCT ?offre_22 ?possede_43 ?situeA_65 ?ville_84 ?nom_103
             WHERE { ?offre_22 a n1:offre .
