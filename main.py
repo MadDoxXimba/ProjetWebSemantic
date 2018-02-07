@@ -17,11 +17,6 @@ def welcomePage():
     template = env.get_template('queryform.html')
     return render_template(template)
     
-@app.route("/graph")
-def graphPage():
-    template = env.get_template('graph.html')
-    return render_template(template)
-    
 @app.route("/test")
 def testPage():
     connection.connect()
@@ -33,6 +28,12 @@ def queryParser(data):
         return request.path
     else:
         return str(data)
+
+@app.route("/graph", methods=['GET', 'POST'])
+def graphPage():
+    if request.method == 'GET':
+        template = env.get_template('graph.html')
+        return render_template(template)
         
 @app.route("/result", methods=['GET', 'POST'])
 def getForm():
