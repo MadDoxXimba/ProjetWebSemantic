@@ -56,7 +56,7 @@ def getForm():
             ?possede_43 n1:situeA ?situeA_65 .
             ?situeA_65 n1:ville ?ville_84 .
             ?ville_84 n1:nom ?nom_103 .
-            ?nom_103 rdfs:label LAVAL . }
+            ?nom_103 rdfs:label 'LAVAL' . }
             LIMIT 200
         """)
         print("post-query")
