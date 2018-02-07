@@ -31,7 +31,7 @@ def queryParser(data):
 
 @app.route("/graph", methods=['GET', 'POST'])
 def graphPage():
-    if request.method == 'GET':
+    if request.method == 'POST':
         template = env.get_template('graph.html')
         return render_template(template)
         
