@@ -41,7 +41,7 @@ def graphPage():
         b = 2
         c = 3
         
-        return render_template(template, [a, b, c])
+        return render_template(template, result = [a, b, c])
         
 @app.route("/result", methods=['GET', 'POST'])
 def getForm():
