@@ -29,11 +29,6 @@ def queryParser(data):
     else:
         return str(data)
 
-@app.route("/graph", methods=['GET', 'POST'])
-def graphPage():
-    if request.method == 'GET':
-        template = env.get_template('graph.html')
-        return render_template(template)
         
 @app.route("/result", methods=['GET', 'POST'])
 def getForm():
