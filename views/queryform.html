@@ -35,7 +35,10 @@
             </form>
             <br>
             <p><strong>Voir la base de données RDF en graph: </strong></p>
-            <a type="button" class="btn btn-primary" href="{{ url_for('graph') }}">Voir RDF</a>
+            <form action="graph" method="GET" class="navbar-form navbar-left">
+                <button type="button" class="btn btn-primary">Voir RDF</button>
+            </form>
+            
         </div>
     </body>
 </html>
