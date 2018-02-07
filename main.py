@@ -44,7 +44,7 @@ def getForm():
         sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
-        '''
+        
         # QUERY THE SERVER
         query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
         query += "PREFIX n1: <https://tpws/>"
@@ -55,7 +55,7 @@ def getForm():
         query += "?possede_43 n1:situeA ?situeA_65 ."
         query += "?situeA_65 n1:ville ?ville_84 ."
         query += "?ville_84 n1:nom ?nom_103 ."
-        query += "?nom_103 rdfs:label '"+result+"' . }"
+        #query += "?nom_103 rdfs:label '"+str(result)+"' . }"
         query += "LIMIT 200"
 
 		sparql.setQuery(query)
@@ -68,7 +68,6 @@ def getForm():
         # JSON FORMAT
         
         print(results)
-        '''
       
         # result for user
         template = env.get_template('result.html')
