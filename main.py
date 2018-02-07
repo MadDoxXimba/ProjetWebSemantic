@@ -35,7 +35,7 @@ def graphPage():
         template = env.get_template('graph.html')
         return render_template(template)
     elif request.method == 'POST':
-        template = env.get_template('error.html')
+        template = env.get_template('graph.html')
         
         a = 1
         b = 2
