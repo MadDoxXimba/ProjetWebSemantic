@@ -46,15 +46,20 @@ def getForm():
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
         
         # QUERY THE SERVER
-        
-        sparql.setQuery("""
-            SELECT ?subject ?predicate ?object
-            WHERE {
-              ?subject ?predicate ?object
-            }
-            LIMIT 25
-        """)
-        
+        query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+        query += "PREFIX n1: <https://tpws/>"
+        query += "SELECT DISTINCT ?offre_22 ?possede_43 ?situeA_65 ?ville_84 ?nom_103"
+        query += "WHERE { ?offre_22 a n1:offre ."
+        query += "?possede_43 a n1:contact ."
+        query += "?offre_22 n1:possede ?possede_43 ."
+        query += "?possede_43 n1:situeA ?situeA_65 ."
+        query += "?situeA_65 n1:ville ?ville_84 ."
+        query += "?ville_84 n1:nom ?nom_103 ."
+        query += "?nom_103 rdfs:label '"+result+"' . }"
+        query += "LIMIT 200"
+
+		sparql.setQuery(query)
+		
         # RESPONSE FROM SERVER
         
         sparql.setReturnFormat(JSON)
