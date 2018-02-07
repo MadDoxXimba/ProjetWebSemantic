@@ -36,12 +36,7 @@ def graphPage():
         return render_template(template)
     elif request.method == 'POST':
         template = env.get_template('graph.html')
-        
-        a = 1
-        b = 2
-        c = 3
-        
-        return render_template(template, result = [a, b, c])
+        return render_template(template)
         
 @app.route("/result", methods=['GET', 'POST'])
 def getForm():
