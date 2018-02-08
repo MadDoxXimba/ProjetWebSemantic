@@ -447,7 +447,7 @@ def getForm():
         results = sparql.query().convert()
         
         # JSON FORMAT
-        
+
         listOffers=[]
         for obj in results['results']['bindings']:
             listOffers.append(obj['label_100']['value'])
@@ -520,7 +520,7 @@ def graphOffersByCity():
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
-        nodes = nodes.replace("'",'"')
-        edges = edges.replace("'",'"')
+        nodes = [n.replace("'",'"') for n in nodes]
+        edges = [e.replace("'",'"') for e in edges]
 
         return render_template(template, result1 = edges, result2 = nodes)
