@@ -464,6 +464,7 @@ def getForm():
         nodes = [n.replace("'",'"') for n in nodes]
         edges = [e.replace("'",'"') for e in edges]
 
+
         # result for user
         template = env.get_template('result.html')
         
