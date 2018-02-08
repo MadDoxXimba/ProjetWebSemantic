@@ -510,4 +510,7 @@ def graphOffersByCity():
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
+        print(nodes)
+        print(edges)
+
         return render_template(template, result1 = edges, result2 = nodes)
