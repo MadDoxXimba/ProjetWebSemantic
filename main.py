@@ -491,6 +491,9 @@ def graphOffersByCity():
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
         
+        python_obj = json.loads(results)
+        print(python_obj)
+
         # JSON FORMAT
 
         listOffers=[]
@@ -500,15 +503,17 @@ def graphOffersByCity():
         template = env.get_template('graph.html')
 
         edges = []
-        nodes = [{"id": 0, "label": mydict(result[0]), "group": 1}]
+        nodes = [{"id": 0, "label": result[0], "group": 1}]
 
         cpt = 1
         for o in listOffers:
-            nodes.append({"id": cpt, "label": mydict(o), "group": 2})
+            nodes.append({"id": cpt, "label": o, "group": 2})
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
         print(nodes)
         print(edges)  
+
+
 
         return render_template(template, result1 = edges, result2 = nodes)
