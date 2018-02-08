@@ -437,7 +437,7 @@ def getForm():
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
             ORDER BY ?label_100
-            LIMIT 200
+            LIMIT 10
         """)
 
         # RESPONSE FROM SERVER
