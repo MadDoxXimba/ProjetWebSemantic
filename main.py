@@ -503,11 +503,11 @@ def graphOffersByCity():
         template = env.get_template('graph.html')
 
         edges = []
-        nodes = [{"id": 0, "label": result[0], "group": 1}]
+        nodes = [{"id": 0, "label": result[0].replace("'",'"'), "group": 1}]
 
         cpt = 1
         for o in listOffers:
-            nodes.append({"id": cpt, "label": o, "group": 2})
+            nodes.append({"id": cpt, "label": o.replace("'",'"'), "group": 2})
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
