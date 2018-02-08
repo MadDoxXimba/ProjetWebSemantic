@@ -436,6 +436,7 @@ def getForm():
             ?situeA_65 n1:ville ?ville_84 .
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
+            ORDER BY ?offre_22
             LIMIT 200
         """)
 
