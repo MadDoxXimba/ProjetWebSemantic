@@ -38,7 +38,7 @@ def welcomePage():
     
     listCities=[]
     for obj in cities:
-        listCities.append(obj.value)
+        listCities.append(obj["value"])
 
     # JSON FORMAT
     
