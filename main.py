@@ -458,7 +458,7 @@ def getForm():
     return render_template(template, city = str(result[0]), offers = listOffers)
 
 @app.route("/graphOffersByCity", methods=['GET', 'POST'])
-def graphPage():
+def graphOffersByCity():
     if request.method == 'POST':
 
         result = request.form.getlist('key')
