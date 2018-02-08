@@ -37,13 +37,9 @@ def welcomePage():
     cities = sparqlCities.query().convert()
     
     listCities=[]
-    print(cities)
-    print(type(cities))
-    for obj in cities:
-        print(obj)
-        print(obj[0])
-        print(obj[1])
-        listCities.append(obj[1].value)
+    for obj in cities['results']:
+        print(obj.value)
+        listCities.append(obj.value)
 
     # JSON FORMAT
     
