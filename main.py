@@ -490,9 +490,6 @@ def graphOffersByCity():
 
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
-        
-        python_obj = json.loads(results)
-        print(python_obj)
 
         # JSON FORMAT
 
