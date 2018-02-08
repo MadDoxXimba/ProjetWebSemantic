@@ -1,21 +1,77 @@
+<!doctype html>
 <html>
-   <body>
-   
- 		<p><strong>Voir le résultat de la requête en graphe : </strong></p>
-        <form action="/graphOffersByCity" method="post">
-        	<input type="HIDDEN" id="key" name="key" value="LAVAL"> 
-            <button class="btn btn-primary" name="graphBtn" type="submit">Voir RDF</button>
-        </form>
+<head>
+	<style type="text/css">
+	    #mynetwork {
+	        width: 900px;
+	        height: 900px;
+	        border: 1px solid lightgray;
+	    }
+    </style>
 
-      	<table border = 1>
-           	<tr>
-               	<th> Activités dans la ville de {{ city }} </th>
-               	<td>
-					{% for o in offers %}
-                        <p>{{ o }}</p>
-                	{% endfor %}
-				</td>
-            </tr>
-      	</table>
-   	</body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        // create some edges
+        var edges = JSON.parse('{{ result1 | tojson | safe }}');
+        // create some nodes
+        var nodes = JSON.parse('{{ result2 | tojson | safe }}');
+        console.log(nodes);
+        
+        function draw() {
+            
+            // create a network
+            var container = document.getElementById('mynetwork');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var options = {
+                nodes: {
+                    shape: 'dot',
+                    size: 16
+                },
+                physics: {
+                    forceAtlas2Based: {
+                        gravitationalConstant: -26,
+                        centralGravity: 0.005,
+                        springLength: 230,
+                        springConstant: 0.18
+                    },
+                    maxVelocity: 146,
+                    solver: 'forceAtlas2Based',
+                    timestep: 0.35,
+                    stabilization: {iterations: 150}
+                }
+            };
+            var network = new vis.Network(container, data, options);
+        }
+    </script>
+</head>
+
+<body onload="draw()">
+	<p>
+	    RDF GRAPH...
+	</p>
+
+	<div id="mynetwork"></div>
+
+	<!--<p><strong>Voir le résultat de la requête en graphe : </strong></p>
+    <form action="/graphOffersByCity" method="post">
+    	{% <input type="HIDDEN" id="key" name="key" value="LAVAL"> city %}
+    	<input type="HIDDEN" id="key" name="key" value="LAVAL"> 
+        <button class="btn btn-primary" name="graphBtn" type="submit">Voir RDF</button>
+    </form>-->
+
+  	<table border = 1>
+       	<tr>
+           	<th> Activités dans la ville de {{ city }} </th>
+           	<td>
+				{% for o in offers %}
+                    <p>{{ o }}</p>
+            	{% endfor %}
+			</td>
+        </tr>
+  	</table>
+	</body>
 </html>
