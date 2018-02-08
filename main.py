@@ -28,19 +28,24 @@ def welcomePage():
         WHERE { ?ville_1 a n1:ville .
         ?ville_1 n1:nom ?nom_50 .
         ?nom_50 rdfs:label ?label_69 . }
+        ORDER BY ?label_69
     """)
 
     # RESPONSE FROM SERVER
-    
+
     sparqlCities.setReturnFormat(JSON)
     cities = sparqlCities.query().convert()
     
+    listCities=[]
+    for obj in cities:
+        listCities.append(obj.value)
+
     # JSON FORMAT
     
-    print(cities)
+    print(listCities)
 
     template = env.get_template('queryform.html')
-    return render_template(template)
+    return render_template(template, result1 = str(listCities))
     
 @app.route("/test")
 def testPage():
@@ -418,7 +423,6 @@ def getForm():
         # Connect to SPARQL SERVER      
 
         sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
-        sparqlCities = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
 
@@ -437,25 +441,14 @@ def getForm():
             LIMIT 200
         """)
 
-        sparqlCities.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            PREFIX n1: <https://tpws/>
-            SELECT DISTINCT ?label_69
-            WHERE { ?ville_1 a n1:ville .
-            ?ville_1 n1:nom ?nom_50 .
-            ?nom_50 rdfs:label ?label_69 . }
-        """)
-
         # RESPONSE FROM SERVER
         
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
-
-        sparqlCities.setReturnFormat(JSON)
-        cities = sparqlCities.query().convert()
         
         # JSON FORMAT
         
-        print(cities)
+        print(results)
 
         # result for user
         template = env.get_template('result.html')
