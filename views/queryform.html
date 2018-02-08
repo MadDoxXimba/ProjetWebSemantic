@@ -21,7 +21,12 @@
             </div>
         </div>
         <div class="container">
-            <p> <strong> {{ result1 }} </strong> </p>
+            <select class=form-control>
+                {% for o in result1 %}
+                <option value="{{ o }}">{{ o }}</option>
+                {% endfor %}
+            </select>
+            <!--<p> <strong> {{ result1 }} </strong> </p>-->
             <form action="result" method="post" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" name="key" id="key" class="form-control" placeholder="SPARQL Query">
