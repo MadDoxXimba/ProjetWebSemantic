@@ -447,14 +447,16 @@ def getForm():
         results = sparql.query().convert()
         
         # JSON FORMAT
+        
+        listOffers=[]
+        for obj in results['results']['bindings']:
+            listOffers.append(obj['label_100']['value'])
 
         edges = []
         nodes = [{"id": 0, "label": result[0], "group": 1}]
 
         cpt = 1
-        listOffers=[]
-        for obj in results['results']['bindings']:
-            listOffers.append(obj['label_100']['value'])
+        for o in listOffers:
             nodes.append({"id": cpt, "label": o, "group": 2})
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
