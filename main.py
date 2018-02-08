@@ -461,8 +461,7 @@ def getForm():
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
-        nodes = [n.replace("'",'"') for n in nodes]
-        edges = [e.replace("'",'"') for e in edges]
+        nodes = [n["label"].replace("'",'"') for n in nodes]
 
 
         # result for user
