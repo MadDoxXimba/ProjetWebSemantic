@@ -58,6 +58,11 @@ def queryParser(data):
 @app.route("/graph", methods=['GET', 'POST'])
 def graphPage():
     if request.method == 'POST':
+
+        result = request.form.getlist('key')
+
+        print(result)
+
         template = env.get_template('graph.html')
         
         chart = {"renderTo": 1, "type": 2, "height": 3,}
@@ -452,8 +457,6 @@ def getForm():
         for obj in results['results']['bindings']:
             listOffers.append(obj['label_100']['value'])
 
-        print(listOffers)
-        
         # result for user
         template = env.get_template('result.html')
         
