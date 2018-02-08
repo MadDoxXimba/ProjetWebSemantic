@@ -499,18 +499,16 @@ def graphOffersByCity():
 
         template = env.get_template('graph.html')
 
-        ville = str(result[0]).replace('"',"'")
         edges = []
-        nodes = [{"id": 0, "label": ville, "group": 1}]
+        nodes = [{"id": 0, "label": result[0], "group": 1}]
 
         cpt = 1
         for o in listOffers:
-            lol = str(o).replace('"',"'")
-            nodes.append({"id": cpt, "label": lol, "group": 2})
+            nodes.append({"id": cpt, "label": o, "group": 2})
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
-        print(nodes)
-        print(edges)
+        nodes = nodes.replace("'",'"')
+        edges = edges.replace("'",'"')
 
         return render_template(template, result1 = edges, result2 = nodes)
