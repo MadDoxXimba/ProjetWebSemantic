@@ -36,15 +36,12 @@ def welcomePage():
     sparqlCities.setReturnFormat(JSON)
     cities = sparqlCities.query().convert()
     
-    print(cities)
     listCities=[]
     for obj in cities['results']['bindings']:
         print(obj)
         listCities.append(obj['label_69']['value'])
 
     # JSON FORMAT
-    
-    print(listCities)
 
     template = env.get_template('queryform.html')
     return render_template(template, result1 = listCities)
