@@ -448,7 +448,7 @@ def getForm():
         # JSON FORMAT
         
         listOffers=[]
-        for obj in cities['results']['bindings']:
+        for obj in results['results']['bindings']:
             listOffers.append(obj['offre_22'])
 
         # result for user
