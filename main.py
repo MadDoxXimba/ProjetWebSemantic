@@ -45,7 +45,7 @@ def welcomePage():
     print(listCities)
 
     template = env.get_template('queryform.html')
-    return render_template(template, result1 = str(listCities))
+    return render_template(template, result1 = listCities)
     
 @app.route("/test")
 def testPage():
