@@ -117,6 +117,6 @@ def getForm():
         nodes = [mydict(n) for n in nodes]
 
         # result for user
-        template = env.get_template('result.html')
+        template = env.get_template('resultOffersByCity.html')
         
     return render_template(template, city = str(result[0]), offers = listOffers, result1 = edges, result2 = nodes)
