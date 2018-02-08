@@ -461,8 +461,8 @@ def getForm():
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
 
-        nodes = nodes.replace("'",'"')
-        edges = edges.replace("'",'"')
+        nodes = [n.replace("'",'"') for n in nodes]
+        edges = [e.replace("'",'"') for e in edges]
 
         # result for user
         template = env.get_template('result.html')
