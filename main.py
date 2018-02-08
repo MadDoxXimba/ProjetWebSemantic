@@ -465,7 +465,7 @@ def getForm():
             cpt = cpt +1
 
 
-        nodes = mydict(nodes)
+        nodes = [mydict(n) for n in nodes]
 
         # result for user
         template = env.get_template('result.html')
