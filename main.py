@@ -482,7 +482,7 @@ def graphOffersByCity():
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
             ORDER BY ?label_100
-            LIMIT 200
+            LIMIT 1
         """)
 
         # RESPONSE FROM SERVER
@@ -498,13 +498,6 @@ def graphOffersByCity():
             listOffers.append(obj['label_100']['value'])
 
         template = env.get_template('graph.html')
-        
-        chart = {"renderTo": 1, "type": 2, "height": 3,}
-        series = [{"name": 'Label1', "data": [1,2,3]}, {"name": 'Label2', "data": [4, 5, 6]}]
-        title = {"text": 'My Title'}
-        xAxis = {"categories": ['xAxis Data1', 'xAxis Data2', 'xAxis Data3']}
-        yAxis = {"title": {"text": 'yAxis Label'}}
-
 
         edges = []
         nodes = [{"id": 0, "label": result[0], "group": 1}]
@@ -518,4 +511,4 @@ def graphOffersByCity():
         print(nodes)
         print(edges)  
 
-        return render_template(template, result1 = edges, result2 = nodes, result3 = title)
+        return render_template(template, result1 = edges, result2 = nodes)
