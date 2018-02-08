@@ -426,9 +426,10 @@ def getForm():
 
         sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             PREFIX n1: <https://tpws/>
-            SELECT DISTINCT ?offre_22 ?nom_100 ?possede_43 ?situeA_65 ?ville_84 ?nom_103
+            SELECT DISTINCT ?label_100 
             WHERE { ?offre_22 a n1:offre .
             ?offre_22 n1:nom ?nom_100 .
+            ?nom_100 rdfs:label ?label_100 .
             ?possede_43 a n1:contact .
             ?offre_22 n1:possede ?possede_43 .
             ?possede_43 n1:situeA ?situeA_65 .
@@ -446,13 +447,13 @@ def getForm():
         results = sparql.query().convert()
         
         # JSON FORMAT
-        
-        print(results)
-        
+
         listOffers=[]
         for obj in results['results']['bindings']:
-            listOffers.append(obj['offre_22'])
+            listOffers.append(obj['label_100']['value'])
 
+        print(listOffers)
+        
         # result for user
         template = env.get_template('result.html')
         

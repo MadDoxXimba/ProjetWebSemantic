@@ -1,11 +1,15 @@
 <html>
    <body>
    
-      <table border = 1>
-            <tr>
-               <th> QUERY </th>
-               <td> {{ result }} </td>
+      	<table border = 1>
+           	<tr>
+               	<th> QUERY </th>
+               	<td>
+					{% for o in result %}
+                        <p>{{ o }}</p>
+                	{% endfor %}
+				</td>
             </tr>
-      </table>
-   </body>
+      	</table>
+   	</body>
 </html>
