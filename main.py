@@ -58,11 +58,6 @@ def queryParser(data):
 @app.route("/graph", methods=['GET', 'POST'])
 def graphPage():
     if request.method == 'POST':
-
-        result = request.form.getlist('key')
-
-        print(result)
-
         template = env.get_template('graph.html')
         
         chart = {"renderTo": 1, "type": 2, "height": 3,}
@@ -460,6 +455,64 @@ def getForm():
         # result for user
         template = env.get_template('result.html')
         
-    return render_template(template, result = listOffers)
-    
+    return render_template(template, city = str(result[0]), offers = listOffers)
+
+@app.route("/graphOffersByCity", methods=['GET', 'POST'])
+def graphPage():
+    if request.method == 'POST':
+
+        result = request.form.getlist('key')
+
+        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
+
+        # QUERY THE SERVER
+
+        sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX n1: <https://tpws/>
+            SELECT DISTINCT ?label_100 
+            WHERE { ?offre_22 a n1:offre .
+            ?offre_22 n1:nom ?nom_100 .
+            ?nom_100 rdfs:label ?label_100 .
+            ?possede_43 a n1:contact .
+            ?offre_22 n1:possede ?possede_43 .
+            ?possede_43 n1:situeA ?situeA_65 .
+            ?situeA_65 n1:ville ?ville_84 .
+            ?ville_84 n1:nom ?nom_103 .
+            ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
+            ORDER BY ?label_100
+            LIMIT 200
+        """)
+
+        # RESPONSE FROM SERVER
+        # JSON FORMAT
+
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
         
+        # JSON FORMAT
+
+        listOffers=[]
+        for obj in results['results']['bindings']:
+            listOffers.append(obj['label_100']['value'])
+
+        template = env.get_template('graph.html')
+        
+        chart = {"renderTo": 1, "type": 2, "height": 3,}
+        series = [{"name": 'Label1', "data": [1,2,3]}, {"name": 'Label2', "data": [4, 5, 6]}]
+        title = {"text": 'My Title'}
+        xAxis = {"categories": ['xAxis Data1', 'xAxis Data2', 'xAxis Data3']}
+        yAxis = {"title": {"text": 'yAxis Label'}}
+
+
+        edges = []
+        nodes = [{"id": 0, "label": str(result[0]), "group": 1}]
+
+        cpt = 1
+        for o in listOffers:
+            nodes.append({"id": cpt, "label": o, "group": 2})
+            edges.append({"from": cpt, "to": 0})
+            cpt = cpt +1
+
+        return render_template(template, result1 = edges, result2 = nodes, result3 = title)
