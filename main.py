@@ -38,7 +38,6 @@ def welcomePage():
     
     listCities=[]
     for obj in cities['results']['bindings']:
-        print(obj)
         listCities.append(obj['label_69']['value'])
 
     # JSON FORMAT
@@ -71,7 +70,7 @@ def graphPage():
 
 
         edges = [
-                {"from": 1, "to": 0},
+                {"from": 1, "to": 0}, #LA CLE DOIT TOUJOURS ETRE UN STRING
                 {"from": 2, "to": 0},
                 {"from": 3, "to": 0},
                 {"from": 3, "to": 2},
