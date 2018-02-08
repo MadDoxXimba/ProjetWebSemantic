@@ -437,7 +437,7 @@ def getForm():
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
             ORDER BY ?label_100
-            LIMIT 10
+            LIMIT 100
         """)
 
         # RESPONSE FROM SERVER
@@ -482,7 +482,7 @@ def graphOffersByCity():
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
             ORDER BY ?label_100
-            LIMIT 1
+            LIMIT 100
         """)
 
         # RESPONSE FROM SERVER
@@ -509,10 +509,5 @@ def graphOffersByCity():
             nodes.append({"id": cpt, "label": lol, "group": 2})
             edges.append({"from": cpt, "to": 0})
             cpt = cpt +1
-
-        print(nodes)
-        print(edges)  
-
-
 
         return render_template(template, result1 = edges, result2 = nodes)
