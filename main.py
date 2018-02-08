@@ -37,6 +37,8 @@ def welcomePage():
     cities = sparqlCities.query().convert()
     
     listCities=[]
+    print(cities)
+    print(type(cities))
     for obj in cities:
         print(obj)
         print(obj[0])
