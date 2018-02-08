@@ -448,14 +448,24 @@ def getForm():
         
         # JSON FORMAT
 
+        edges = []
+        nodes = [{"id": 0, "label": result[0], "group": 1}]
+
+        cpt = 1
         listOffers=[]
         for obj in results['results']['bindings']:
             listOffers.append(obj['label_100']['value'])
+            nodes.append({"id": cpt, "label": o, "group": 2})
+            edges.append({"from": cpt, "to": 0})
+            cpt = cpt +1
+
+        nodes = nodes.replace("'",'"')
+        edges = edges.replace("'",'"')
 
         # result for user
         template = env.get_template('result.html')
         
-    return render_template(template, city = str(result[0]), offers = listOffers)
+    return render_template(template, city = str(result[0]), offers = listOffers, result1 = edges, result2 = nodes)
 
 @app.route("/graphOffersByCity", methods=['GET', 'POST'])
 def graphOffersByCity():
