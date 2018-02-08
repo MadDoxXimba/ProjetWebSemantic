@@ -36,6 +36,7 @@ def welcomePage():
     sparqlCities.setReturnFormat(JSON)
     cities = sparqlCities.query().convert()
     
+    print(cities)
     listCities=[]
     for obj in cities['results']:
         print(obj)
