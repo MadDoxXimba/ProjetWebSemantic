@@ -57,6 +57,21 @@ def queryParser(data):
         return request.path
     else:
         return str(data)
+        
+@app.route("/map", methods=['GET', 'POST'])
+def mapPage():
+    if request.method == 'POST':
+        template = env.get_template('map.html')
+        
+        beaches = [
+            ['Bondi Beach', -33.890542, 151.274856, 4],
+            ['Coogee Beach', -33.923036, 151.259052, 5],
+            ['Cronulla Beach', -34.028249, 151.157507, 3],
+            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+            ['Maroubra Beach', -33.950198, 151.259302, 1]
+        ]
+        
+        return render_template(template, result = beaches)
 
 @app.route("/graph", methods=['GET', 'POST'])
 def graphPage():
