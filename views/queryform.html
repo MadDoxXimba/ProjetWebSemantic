@@ -21,7 +21,12 @@
             </div>
         </div>
         <div class="container">
-            <form action="result" method="post" class="navbar-form navbar-left" role="search">
+            <p><strong>Voir la base de données RDF en graphe : </strong></p>
+            <form action="/graph" method="post">
+                <button class="btn btn-primary" name="graphBtn" type="submit">Voir RDF</button>
+            </form>
+
+            <form action="resultOffersByCity" method="post" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <label for="key">Recherche les offres par ville : </label>
                     <select name="key" id="key" class=form-control>
@@ -29,15 +34,9 @@
                         <option value="{{ o }}">{{ o }}</option>
                         {% endfor %}
                     </select>
-                   <!-- <input type="text" name="key" id="key" class="form-control" placeholder="SPARQL Query">-->
                 </div>
                 <button type="submit" class="btn btn-default">Rechercher</button>
-            </form>
-            <br>
-            <p><strong>Voir la base de données RDF en graphe : </strong></p>
-            <form action="/graph" method="post">
-                <button class="btn btn-primary" name="graphBtn" type="submit">Voir RDF</button>
-            </form>
+            </form>            
         </div>
     </body>
 </html>
