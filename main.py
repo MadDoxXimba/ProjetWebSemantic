@@ -471,3 +471,76 @@ def getForm():
         template = env.get_template('resultOffersByCity.html')
         
     return render_template(template, city = str(result[0]), offers = listOffers, result1 = edges, result2 = nodes)
+
+@app.route("/resultTypesOffersByCity", methods=['GET', 'POST'])
+def getForm():
+    if request.method == 'POST':
+        # GET POST DATA on form submit
+        
+        result = request.form.getlist('key')
+
+        # Connect to SPARQL SERVER      
+
+        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
+
+        # QUERY THE SERVER
+
+        sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX n1: <https://tpws/>
+            SELECT DISTINCT ?label_100 ?label_1
+            WHERE { ?offre_22 a n1:offre .
+            ?offre_22 n1:nom ?nom_100 .
+            ?nom_100 rdfs:label ?label_100 .
+            ?possede_43 a n1:contact .
+            ?offre_22 n1:possede ?possede_43 .
+            ?possede_43 n1:situeA ?situeA_65 .
+            ?situeA_65 n1:ville ?ville_84 .
+            ?ville_84 n1:nom ?nom_103 .
+            ?type_3 rdfs:label ?label_1 .
+            ?offre_22 n1:type ?type_3 .
+            ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
+            ORDER BY ?label_100
+            LIMIT 50
+        """)
+
+        # RESPONSE FROM SERVER
+        # JSON FORMAT
+
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        
+        # JSON FORMAT
+
+        print(results)
+
+        listOffers=[]
+        listTypes=[]
+        for obj in results['results']['bindings']:
+            listOffers.append(obj['label_100']['value'])
+            listTypes.append(obj['type_3']['value]'])
+        
+        edges = []
+        nodes = [{"id": 0, "label": result[0], "group": 1}]
+
+        cptO = 1
+        cptT = 0
+        for o in listOffers:
+            nodes.append({"id": cptO, "label": o, "group": 2})
+            edges.append({"from": cptO, "to": 0})
+            
+            cptT = cptO + 1
+            for t in listTypes:
+                nodes.append({"id": cptT, "label": t, "group": 3})
+                edges.append({"from": cptT, "to": cptO})
+                cptT = cptT + 1
+            cptO = cptO + cptT
+            cptO = cptO + 1
+
+        nodes = [mydict(n) for n in nodes]
+
+        # result for user
+        template = env.get_template('resultOffersByCity.html')
+        
+    return render_template(template, city = str(result[0]), offers = listOffers, types = listTypes, result1 = edges, result2 = nodes)    

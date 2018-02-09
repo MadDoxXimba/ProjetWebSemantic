@@ -36,6 +36,18 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-default">Rechercher</button>
+            </form>        
+
+            <form action="resultTypesOffersByCity" method="post" class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <label for="key">Recherche les types des offres par ville : </label>
+                    <select name="key" id="key" class=form-control>
+                        {% for o in result1 %}
+                        <option value="{{ o }}">{{ o }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Rechercher</button>
             </form>            
         </div>
     </body>
