@@ -63,15 +63,54 @@ def mapPage():
     if request.method == 'POST':
         template = env.get_template('map.html')
         
-        beaches = [
-            ['Bondi Beach', -33.890542, 151.274856, 4],
-            ['Coogee Beach', -33.923036, 151.259052, 5],
-            ['Cronulla Beach', -34.028249, 151.157507, 3],
-            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-            ['Maroubra Beach', -33.950198, 151.259302, 1]
-        ]
+        # GET POST DATA on form submit
         
-        return render_template(template, result = beaches)
+        result = request.form.getlist('key')
+
+        # Connect to SPARQL SERVER      
+
+        sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
+        #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
+
+        # QUERY THE SERVER
+
+        sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX n1: <https://tpws/>
+            SELECT DISTINCT ?label_100 ?label_long ?label_lat
+            WHERE { ?offre_22 a n1:offre .
+            ?offre_22 n1:nom ?nom_100 .
+            ?nom_100 rdfs:label ?label_100 .
+            ?offre_22 n1:possede ?possede_43 .
+            ?possede_43 n1:situeA ?situeA_65 .
+            ?situeA_65 n1:ville ?ville_84 .
+            ?ville_84 n1:nom ?nom_103 .
+            ?nom_103 rdfs:label '"""+str(result[0])+"""' . 
+            ?situeA_65 n1:longitude ?longitude .
+            ?situeA_65 n1:latitude ?latitude .
+            ?longitude rdfs:label ?label_long .
+            ?latitude rdfs:label ?label_lat .}
+            ORDER BY ?label_100
+            LIMIT 50
+        """)
+
+        # RESPONSE FROM SERVER
+        # JSON FORMAT
+
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        
+        # JSON FORMAT
+
+        listOffers=[]
+        for obj in results['results']['bindings']:
+            listOffers.append([obj['label_100']['value'],
+                double(obj['label_long']['value']),
+                double(obj['label_lat']['value'])])
+
+        print(listOffers)
+        
+        return render_template(template, result = listOffers)
 
 @app.route("/graph", methods=['GET', 'POST'])
 def graphPage():

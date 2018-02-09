@@ -26,6 +26,14 @@
             <p><strong style="color:red">Le site étant héberger sur un serveur gratuit, il est normale que les requêtes soient lentes... A noté, dans le cas où le scrollbox rechercher les offres par ville n'affichent rien, il faudra mettre le .ttl sur apache fuseki: https://herokufuseki.herokuapp.com/ . Le fichier .ttl se trouve sur le répo: https://github.com/MadDoxXimba/apache_fuseki_heroku/tree/master/Data dans le dossier data</strong></p>
             <p><strong>Voir la base de données RDF en graphe : </strong></p>
             <form action="/map" method="post">
+                <div class="form-group">
+                    <label for="key">Recherche les offres par ville : </label>
+                    <select name="key" id="key" class=form-control>
+                        {% for o in result1 %}
+                        <option value="{{ o }}">{{ o }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <button class="btn btn-primary" name="mapBtn" type="submit">Voir map</button>
             </form>
             <form action="/graph" method="post">
