@@ -68,6 +68,8 @@ def mapPage():
         
         result = request.form.getlist('key')
 
+        print(result)
+        
         # Connect to SPARQL SERVER      
 
         sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
