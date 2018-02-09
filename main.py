@@ -66,7 +66,6 @@ def mapPage():
         
         # GET POST DATA on form submit
         
-        print("lol1")
         result = request.form.getlist('key')
 
         # Connect to SPARQL SERVER      
@@ -93,13 +92,11 @@ def mapPage():
             ?longitude rdfs:label ?label_long .
             ?latitude rdfs:label ?label_lat .}
             ORDER BY ?label_100
-            LIMIT 10
+            LIMIT 1
         """)
 
         # RESPONSE FROM SERVER
         # JSON FORMAT
-
-        print("lol2")
 
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
@@ -572,8 +569,6 @@ def getForm2():
         results = sparql.query().convert()
         
         # JSON FORMAT
-
-        print(results)
 
         listOffers=[]
         listTypes=[]
