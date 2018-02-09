@@ -293,6 +293,12 @@ def getForm3():
         # GET POST DATA on form submit
         
         result = request.form.getlist('key')
+        
+        label = "Nombre d'activités par ville"
+        dataLabel = ["l1", "l2", "l3", "l4", "l5", "l6", "l7"]
+        data = [65, 59, 80, 81, 56, 55, 40]
+        backgroundColor = ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"]
+        
         template = env.get_template('resultNbOffersByCities.html')    
         
-        return render_template(template)
+        return render_template(template, result1 = label, result2 = dataLabel, result3 = data, result4 = backgroundColor)
