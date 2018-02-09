@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from databaseManager import connection
 from SPARQLWrapper import SPARQLWrapper, JSON
+from decimal import *
 import json
 import os
 import sys
@@ -102,11 +103,13 @@ def mapPage():
         
         # JSON FORMAT
 
+        print("C'était bien le float lol")
+
         listOffers=[]
         for obj in results['results']['bindings']:
             listOffers.append([obj['label_100']['value'],
-                float(obj['label_long']['value']),
-                float(obj['label_lat']['value'])])
+                Decimal(obj['label_long']['value']),
+                Decimal(obj['label_lat']['value'])])
 
         print(listOffers)
         
