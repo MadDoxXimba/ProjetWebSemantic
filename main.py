@@ -294,7 +294,7 @@ def getForm3():
         
         result = request.form.getlist('key')
         resultLimit = request.form.getlist('key1')
-        
+        bartype = request.form.getlist('key2')
         
         global fusekiURL
         sparql = SPARQLWrapper(fusekiURL)
@@ -339,4 +339,4 @@ def getForm3():
         
         template = env.get_template('resultNbOffersByCities.html')    
         
-        return render_template(template, result1 = label, result2 = cityLabel, result3 = cityCount, result4 = backgroundColor)
+        return render_template(template, result1 = label, result2 = cityLabel, result3 = cityCount, result4 = backgroundColor, result5 = bartype[0])

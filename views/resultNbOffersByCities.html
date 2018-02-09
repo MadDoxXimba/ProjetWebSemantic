@@ -10,10 +10,11 @@
             var dataLabel = JSON.parse('{{ result2 | tojson | safe }}');
             var data = JSON.parse('{{ result3 | tojson | safe }}');
             var backgroundColor = JSON.parse('{{ result4 | tojson | safe }}');
+            var barType = JSON.parse('{{ result5 | tojson | safe }}');
             
             new Chart(document.getElementById("chartjs-1"),
             {  
-               "type":"bar",
+               "type": barType,
                "data":{  
                   "labels": dataLabel,
                   "datasets":[  
