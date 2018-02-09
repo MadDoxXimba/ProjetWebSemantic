@@ -436,7 +436,7 @@ def getForm():
 
         # Connect to SPARQL SERVER      
 
-        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
+        sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
 
@@ -496,7 +496,7 @@ def getForm2():
 
         # Connect to SPARQL SERVER      
 
-        sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
+        sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
 
