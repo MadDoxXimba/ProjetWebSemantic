@@ -92,7 +92,7 @@ def mapPage():
             ?longitude rdfs:label ?label_long .
             ?latitude rdfs:label ?label_lat .}
             ORDER BY ?label_100
-            LIMIT 1
+            LIMIT 10
         """)
 
         # RESPONSE FROM SERVER
@@ -108,8 +108,8 @@ def mapPage():
         listOffers=[]
         for obj in results['results']['bindings']:
             listOffers.append([obj['label_100']['value'],
-                Decimal(obj['label_long']['value']),
-                Decimal(obj['label_lat']['value'])])
+                float(obj['label_long']['value']),
+                float(obj['label_lat']['value'])])
 
         print(listOffers)
         
