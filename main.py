@@ -23,6 +23,7 @@ class mydict(dict):
 @app.route("/")
 def welcomePage():
     global fusekiURL
+    print(fusekiURL)
     sparqlCities = SPARQLWrapper(fusekiURL)
 
     # QUERY THE SERVER
