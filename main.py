@@ -108,8 +108,8 @@ def mapPage():
         listOffers=[]
         for obj in results['results']['bindings']:
             listOffers.append([obj['label_100']['value'],
-                float(obj['label_long']['value']),
-                float(obj['label_lat']['value'])])
+                float(obj['label_lat']['value']),
+                float(obj['label_long']['value'])])
 
         print(listOffers)
         
