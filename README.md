@@ -12,7 +12,7 @@
 
 ## Local debugging
     
-Place in root directory (CMD or Powershell or Bash)
+Place in root directory (CMD or Powershell or Bash) - application must already be deployed, if not please follow this tutorial: https://devcenter.heroku.com/articles/git 
 
     1) install heroku cli
     2) create heroku account
