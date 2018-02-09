@@ -4,13 +4,16 @@
 </head>
 
 <body>
+
+<canvas id="myChartTrend" height="150px" width="850px" style="display: inline-block;"></canvas>
     
 <script>
-var myBarChart = new Chart(ctx, {
-    type: 'bar',
-    data: [1,2,3,4],
-    options: options
-});
+    var ctx = document.getElementById("myChartTrend").getContext("2d");
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: [1,2,3,4],
+        options: options
+    });
 </script>
 
 
