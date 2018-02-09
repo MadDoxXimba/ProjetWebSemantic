@@ -97,25 +97,6 @@ def mapPage():
             ?latitude rdfs:label ?label_lat .}
         """)
 
-
-        print("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            PREFIX n1: <https://tpws/>
-            SELECT DISTINCT ?label_100 ?label_long ?label_lat
-            WHERE { ?offre_22 a n1:offre .
-            ?offre_22 n1:nom ?nom_100 .
-            ?nom_100 rdfs:label ?label_100 .
-            ?offre_22 n1:possede ?possede_43 .
-            ?possede_43 n1:situeA ?situeA_65 .
-            ?situeA_65 n1:ville ?ville_84 .
-            ?ville_84 n1:nom ?nom_103 .
-            ?nom_103 rdfs:label '"""+str(result[0])+"""' . 
-            ?situeA_65 n1:longitude ?longitude .
-            ?situeA_65 n1:latitude ?latitude .
-            ?longitude rdfs:label ?label_long .
-            ?latitude rdfs:label ?label_lat .}
-            LIMIT 5
-        """)
-
         # RESPONSE FROM SERVER
         # JSON FORMAT
 
@@ -124,11 +105,10 @@ def mapPage():
         
         # JSON FORMAT
 
-        print(results)
-
         listOffers=[]
         for obj in results['results']['bindings']:
-            listOffers.append([obj['label_100']['value'],
+            print(""+obj['label_100']['value'].replace('"','')+"")
+            listOffers.append([""+obj['label_100']['value'].replace('"','')+"",
                 float(obj['label_lat']['value']),
                 float(obj['label_long']['value'])])
 
