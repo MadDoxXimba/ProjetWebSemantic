@@ -91,7 +91,6 @@ def mapPage():
             ?situeA_65 n1:latitude ?latitude .
             ?longitude rdfs:label ?label_long .
             ?latitude rdfs:label ?label_lat .}
-            LIMIT 5
         """)
 
 
@@ -112,7 +111,7 @@ def mapPage():
             ?latitude rdfs:label ?label_lat .}
             LIMIT 5
         """)
-        
+
         # RESPONSE FROM SERVER
         # JSON FORMAT
 
@@ -515,7 +514,6 @@ def getForm():
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
             ORDER BY ?label_100
-            LIMIT 50
         """)
 
         # RESPONSE FROM SERVER
@@ -577,7 +575,6 @@ def getForm2():
             ?offre_22 n1:type ?type_3 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
             ORDER BY ?label_100
-            LIMIT 50
         """)
 
         # RESPONSE FROM SERVER
