@@ -488,7 +488,7 @@ def getForm():
     return render_template(template, city = str(result[0]), offers = listOffers, result1 = edges, result2 = nodes)
 
 @app.route("/resultTypesOffersByCity", methods=['GET', 'POST'])
-def getForm():
+def getForm2():
     if request.method == 'POST':
         # GET POST DATA on form submit
         
