@@ -11,6 +11,9 @@ env = Environment(
     autoescape=select_autoescape(['html', 'xml'])
 )
 
+
+fusekiURL = "https://herokufuseki.herokuapp.com/WebSemantic/query"
+
 app = Flask(__name__)
 
 class mydict(dict):
@@ -19,8 +22,8 @@ class mydict(dict):
 
 @app.route("/")
 def welcomePage():
-
-    sparqlCities = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/query")
+    global fusekiURL
+    sparqlCities = SPARQLWrapper(fusekiURL)
 
     # QUERY THE SERVER
 
@@ -69,8 +72,8 @@ def mapPage():
         result = request.form.getlist('key')
 
         # Connect to SPARQL SERVER      
-
-        sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
+        global fusekiURL
+        sparql = SPARQLWrapper(fusekiURL)
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
 
@@ -494,8 +497,8 @@ def getForm():
         result = request.form.getlist('key')
 
         # Connect to SPARQL SERVER      
-
-        sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
+        global fusekiURL
+        sparql = SPARQLWrapper(fusekiURL)
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
 
@@ -553,8 +556,8 @@ def getForm2():
         result = request.form.getlist('key')
 
         # Connect to SPARQL SERVER      
-
-        sparql = SPARQLWrapper("http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query")
+        global fusekiURL
+        sparql = SPARQLWrapper(fusekiURL)
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/sparql")
         #sparql = SPARQLWrapper("https://herokufuseki.herokuapp.com/WebSemantic/update")
 
