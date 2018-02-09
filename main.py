@@ -138,19 +138,20 @@ def graphPage():
             ]
 
         edges = [
-                {"from": 1, "to": 0},
-                {"from": 2, "to": 0},
-                {"from": 3, "to": 0},
-                {"from": 4, "to": 3},
-                {"from": 5, "to": 3},
-                {"from": 6, "to": 3},
-                {"from": 7, "to": 3},
-                {"from": 8, "to": 7},
-                {"from": 9, "to": 7},
-                {"from": 10, "to": 7},
-                {"from": 11, "to": 7},
-                {"from": 12, "to": 11},
-                {"from": 13, "to": 11}
+            
+                {"from": 1, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 2, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 3, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 4, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 5, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 6, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 7, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 8, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 9, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 10, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 11, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 12, "to": 11, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"from": 13, "to": 11, "label": 'bottom', "font": {"align": 'bottom'}}
             ]
 
         return render_template(template, result1 = edges, result2 = nodes)
