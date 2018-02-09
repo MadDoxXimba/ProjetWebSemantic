@@ -66,6 +66,7 @@ def mapPage():
         
         # GET POST DATA on form submit
         
+        print("lol1")
         result = request.form.getlist('key')
 
         # Connect to SPARQL SERVER      
@@ -98,12 +99,14 @@ def mapPage():
         # RESPONSE FROM SERVER
         # JSON FORMAT
 
+        print("lol2")
+
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
         
         # JSON FORMAT
 
-        print("C'était bien le float lol")
+        print(results)
 
         listOffers=[]
         for obj in results['results']['bindings']:
