@@ -91,7 +91,7 @@ def mapPage():
             ?longitude rdfs:label ?label_long .
             ?latitude rdfs:label ?label_lat .}
             ORDER BY ?label_100
-            LIMIT 50
+            LIMIT 10
         """)
 
         # RESPONSE FROM SERVER
