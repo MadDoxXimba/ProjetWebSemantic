@@ -293,12 +293,50 @@ def getForm3():
         # GET POST DATA on form submit
         
         result = request.form.getlist('key')
+        resultLimit = request.form.getlist('key1')
+        
+        
+        global fusekiURL
+        sparql = SPARQLWrapper(fusekiURL)
+        
+        sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX n1: <https://tpws/>
+            SELECT DISTINCT ?label_city (count(distinct ?offre_22) as ?count)
+            WHERE { ?offre_22 a n1:offre .
+            ?possede_43 a n1:contact .
+            ?offre_22 n1:possede ?possede_43 .
+            ?possede_43 n1:situeA ?situeA_65 .
+            ?situeA_65 n1:ville ?ville_84 .
+            ?ville_84 n1:nom ?nom_103 .
+            ?nom_103 rdfs:label ?label_city . }
+            GROUP BY ?label_city
+            ORDER BY """ + str(result[0]) + """
+            """ + resultLimit[0] + """
+        """)
+        
+        # RESPONSE FROM SERVER
+        # JSON FORMAT
+
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        
+        cityLabel = []
+        cityCount = []
+        backgroundColor = []
+        color = 0
+        for city in results['results']['bindings']:
+            cityLabel.append(city['label_city']['value'])
+            cityCount.append(city['count']['value'])
+            if color == 0:
+                backgroundColor.append("rgba(255, 99, 132, 0.2)")
+                color = color + 1
+            else:
+                backgroundColor.append("rgba(255, 205, 86, 0.2)")
+                color = 0
         
         label = "Nombre d'activités par ville"
-        dataLabel = ["l1", "l2", "l3", "l4", "l5", "l6", "l7"]
-        data = [65, 59, 80, 81, 56, 55, 40]
-        backgroundColor = ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"]
+        
         
         template = env.get_template('resultNbOffersByCities.html')    
         
-        return render_template(template, result1 = label, result2 = dataLabel, result3 = data, result4 = backgroundColor)
+        return render_template(template, result1 = label, result2 = cityLabel, result3 = cityCount, result4 = backgroundColor)

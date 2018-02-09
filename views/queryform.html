@@ -15,6 +15,7 @@
             <div class="jumbotron">
                 <div class="page-header">
                     <p><strong>Projet Web Semantique - Année 2017 - 2018 - Informatique Décisionnelle</strong></p>
+                    <p>Ce projet a pour objectif d'analyser les données touristiques provenant de OpenData pour Nantes. Pour ce faire, on s'aidera de notions de bases RDF...</p>
                     <p>@author: Jonathan YUE CHUN</p>
                     <p>@author: Quentin LEVAVASSEUR</p>
                     <p>@author: Valentin BOUCHEVREAU</p>
@@ -73,6 +74,18 @@
             <form action="resultNbOffersByCities" method="post" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <label for="key">Visualiser le nombre d'activités par ville : </label>
+                    <select name="key" id="key" class=form-control>
+                        <option value="?label_city">Order by label</option>
+                        <option value="?count">Order by count</option>
+                    </select>
+                    <select name="key1" id="key1" class=form-control>
+                        <option value="LIMIT 1">1</option>
+                        <option value="LIMIT 10">10</option>
+                        <option value="LIMIT 20">20</option>
+                        <option value="LIMIT 50">50</option>
+                        <option value="LIMIT 100">100</option>
+                        <option value="LIMIT 1000">1000</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-default">Rechercher</button>
             </form>            
