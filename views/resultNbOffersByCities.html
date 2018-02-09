@@ -11,6 +11,17 @@
             var data = JSON.parse('{{ result3 | tojson | safe }}');
             var backgroundColor = JSON.parse('{{ result4 | tojson | safe }}');
             var barType = JSON.parse('{{ result5 | tojson | safe }}');
+            var options = {
+                             "layout": {
+                               "hierarchical": {
+                                 "sortMethod": "layoutMethod"
+                               }
+                             },
+                             "edges": {
+                               "smooth": true,
+                               "arrows": {"to" : true }
+                             }
+                           };
             
             new Chart(document.getElementById("chartjs-1"),
             {  
@@ -27,17 +38,7 @@
                      }
                   ]
                },
-               "options":{  
-                  "scales":{  
-                     "yAxes":[  
-                        {  
-                           "ticks":{  
-                              "beginAtZero":true
-                           }
-                        }
-                     ]
-                  }
-               }
+               options
             });
         </script>
     </body>

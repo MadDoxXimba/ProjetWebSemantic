@@ -139,19 +139,19 @@ def graphPage():
 
         edges = [
             
-                {"from": 1, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 2, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 3, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 4, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 5, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 6, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 7, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 8, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 9, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 10, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 11, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 12, "to": 11, "label": 'bottom', "font": {"align": 'bottom'}},
-                {"from": 13, "to": 11, "label": 'bottom', "font": {"align": 'bottom'}}
+                {"arrows": "from", "from": 1, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 2, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 3, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 4, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 5, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 6, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 7, "to": 3, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 8, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 9, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 10, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 11, "to": 7, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 12, "to": 11, "label": 'bottom', "font": {"align": 'bottom'}},
+                {"arrows": "from", "from": 13, "to": 11, "label": 'bottom', "font": {"align": 'bottom'}}
             ]
 
         return render_template(template, result1 = edges, result2 = nodes)
