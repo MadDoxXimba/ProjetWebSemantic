@@ -91,7 +91,6 @@ def mapPage():
             ?situeA_65 n1:latitude ?latitude .
             ?longitude rdfs:label ?label_long .
             ?latitude rdfs:label ?label_lat .}
-            ORDER BY ?label_100
             LIMIT 5
         """)
 
