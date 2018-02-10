@@ -204,15 +204,10 @@ def getForm():
         edges = []
         nodes = [{"id": 0, "label": result[0], "group": 1}]
 
-        print(listOffers[0][0])
-        print(listOffers[0][1].split('/'))
-        print(listOffers[0][1].split('/')[0])
-        print(listOffers[0][1].split('/')[1])
-
         cpt = 1
         for o in listOffers:
             nodes.append({"id": cpt, "label": listOffers[cpt-1][0], "group": 2})
-            edges.append({"arrows": "from", "from": 0, "to": cpt, "label": listOffers[cpt-1][1].split('/')[3], "font": {"align": 'bottom'}})
+            edges.append({"arrows": "from", "from": 0, "to": cpt, "label": ":"+listOffers[cpt-1][1].split('/')[3], "font": {"align": 'bottom'}})
             cpt = cpt +1
 
 
