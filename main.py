@@ -176,13 +176,13 @@ def getForm():
 
         sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             PREFIX n1: <https://tpws/>
-            SELECT DISTINCT ?label_100 
+            SELECT DISTINCT ?propertySitueA ?label_100 
             WHERE { ?offre_22 a n1:offre .
             ?offre_22 n1:nom ?nom_100 .
             ?nom_100 rdfs:label ?label_100 .
             ?possede_43 a n1:contact .
             ?offre_22 n1:possede ?possede_43 .
-            ?possede_43 n1:situeA ?situeA_65 .
+            ?possede_43 ?propertySitueA ?situeA_65 .
             ?situeA_65 n1:ville ?ville_84 .
             ?ville_84 n1:nom ?nom_103 .
             ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
@@ -199,19 +199,22 @@ def getForm():
 
         listOffers=[]
         for obj in results['results']['bindings']:
-            listOffers.append(obj['label_100']['value'])
+            listOffers.append([obj['label_100']['value'], obj['propertySitueA']['value']])
 
         edges = []
         nodes = [{"id": 0, "label": result[0], "group": 1}]
 
+        print(listOffers)
+
         cpt = 1
         for o in listOffers:
-            nodes.append({"id": cpt, "label": o, "group": 2})
-            edges.append({"arrows": "from", "from": cpt, "to": 0, "label": 'bottom', "font": {"align": 'bottom'}})
+            nodes.append({"id": cpt, "label": listOffers[0], "group": 2})
+            edges.append({"arrows": "from", "from": 0, "to": cpt, "label": listOffers[1].split('/')[3], "font": {"align": 'bottom'}})
             cpt = cpt +1
 
 
         nodes = [mydict(n) for n in nodes]
+        edges = [mydict(e) for e in edges]
 
         # result for user
         template = env.get_template('resultOffersByCity.html')
