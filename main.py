@@ -209,7 +209,7 @@ def getForm():
         cpt = 1
         for o in listOffers:
             nodes.append({"id": cpt, "label": listOffers[0], "group": 2})
-            edges.append({"arrows": "from", "from": 0, "to": cpt, "label": listOffers[1].split('/')[3], "font": {"align": 'bottom'}})
+            edges.append({"arrows": "from", "from": 0, "to": cpt, "label": listOffers[1].split('/')[2], "font": {"align": 'bottom'}})
             cpt = cpt +1
 
 
