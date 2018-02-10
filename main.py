@@ -205,6 +205,9 @@ def getForm():
         nodes = [{"id": 0, "label": result[0], "group": 1}]
 
         print(listOffers)
+        print(listOffers[1].split('/'))
+        print(listOffers[1].split('/')[0])
+        print(listOffers[1].split('/')[1])
 
         cpt = 1
         for o in listOffers:
