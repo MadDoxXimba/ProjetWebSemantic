@@ -385,7 +385,8 @@ def getForm4():
                     nbOffersByTypes[o] = 1
 
         nbOffersByTypes = [mydict(n) for n in nbOffersByTypes]
-
+        print(nbOffersByTypes)
+        print(type(nbOffersByTypes))
         template = env.get_template('resultNbOffersByCities.html')    
         
         return render_template(template, result1 = nbOffersByTypes)
