@@ -390,8 +390,8 @@ def getForm4():
             test.append(nbOffersByTypes[key])
             listTypes.append({str(key): nbOffersByTypes[key]})
 
-
-
-        template = env.get_template('resultNbOffersByCities.html')    
         
-        return render_template(template, result1 = test)
+
+        template = env.get_template('resultNbOffersByTypesByCity.html')    
+        
+        return render_template(template, result1 = listTypes)
