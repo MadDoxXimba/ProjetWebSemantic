@@ -378,14 +378,13 @@ def getForm4():
         nbOffersByTypes = dict()
         for offer in results['results']['bindings']:
             types = offer['label_activite']['value'].split("##");
-            print(types)
             for o in types:
                 if (o in nbOffersByTypes):
                     nbOffersByTypes[o] += 1
                 else:
                     nbOffersByTypes[o] = 1
 
-        print(nbOffersByTypes)
+        nbOffersByTypes = [mydict(n) for n in nbOffersByTypes]
 
         template = env.get_template('resultNbOffersByCities.html')    
         
