@@ -385,13 +385,13 @@ def getForm4():
                     nbOffersByTypes[o] = 1
 
         listTypes = []
+        test = []
         for key in nbOffersByTypes:
+            test.append(nbOffersByTypes[key])
             listTypes.append({str(key): nbOffersByTypes[key]})
 
-        print(listTypes)
-        listTypes = [mydict(n) for n in listTypes]
-        print(listTypes)
-        
+
+
         template = env.get_template('resultNbOffersByCities.html')    
         
-        return render_template(template, result1 = listTypes)
+        return render_template(template, result1 = test)
