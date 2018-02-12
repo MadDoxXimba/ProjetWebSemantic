@@ -388,6 +388,7 @@ def getForm4():
         for key in nbOffersByTypes:
             listTypes.append({'"'+str(key)+'"': nbOffersByTypes[key]})
 
+        print(listTypes)
         template = env.get_template('resultNbOffersByCities.html')    
         
         return render_template(template, result1 = listTypes)
