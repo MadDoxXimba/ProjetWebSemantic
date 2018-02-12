@@ -386,7 +386,7 @@ def getForm4():
 
         listTypes = []
         for key in nbOffersByTypes:
-            listTypes.append({key, nbOffersByTypes[key]})
+            listTypes.append({""+str(key)+"": nbOffersByTypes[key]})
 
         listTypes = [mydict(n) for n in listTypes]
 
