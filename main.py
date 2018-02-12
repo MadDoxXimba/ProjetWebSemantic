@@ -389,4 +389,4 @@ def getForm4():
         print(type(nbOffersByTypes))
         template = env.get_template('resultNbOffersByCities.html')    
         
-        return render_template(template, result1 = json.dumps(nbOffersByTypes))
+        return render_template(template, result1 = **nbOffersByTypes)
