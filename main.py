@@ -377,8 +377,8 @@ def getForm4():
         
         nbOffersByTypes = dict()
         for offer in results['results']['bindings']:
-            offer = offer.split("##");
-            for o in offer:
+            types = offer['label_activite']['value'].split("##");
+            for o in types:
                 if (o in nbOffersByTypes):
                     nbOffersByTypes[o] += 1
                 else:
