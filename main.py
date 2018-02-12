@@ -342,3 +342,48 @@ def getForm3():
         template = env.get_template('resultNbOffersByCities.html')    
         
         return render_template(template, result1 = label, result2 = cityLabel, result3 = cityCount, result4 = backgroundColor, result5 = bartype[0])
+
+@app.route("/resultNbOffersByTypesByCity", methods=['GET', 'POST'])
+def getForm4():
+    if request.method == 'POST':
+        # GET POST DATA on form submit
+        
+        result = request.form.getlist('key')
+        
+        global fusekiURL
+        sparql = SPARQLWrapper(fusekiURL)
+        
+        sparql.setQuery("""PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX n1: <https://tpws/>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            SELECT DISTINCT ?label_activite
+            WHERE { ?offre_22 a n1:offre .
+            ?offre_22 n1:type ?type_activite .
+            ?type_activite rdfs:label ?label_activite .
+            ?possede_43 a n1:contact .
+            ?offre_22 n1:possede ?possede_43 .
+            ?possede_43 n1:situeA ?situeA_65 .
+            ?situeA_65 n1:ville ?ville_84 .
+            ?ville_84 n1:nom ?nom_103 .
+            ?nom_103 rdfs:label '"""+str(result[0])+"""' . }
+            ORDER BY ?label_activite
+        """)
+        
+        # RESPONSE FROM SERVER
+        # JSON FORMAT
+
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        
+        nbOffersByTypes = dict()
+        for offer in results['results']['bindings']:
+            offer = offer.split("##");
+            for o in offer:
+                if (o in nbOffersByTypes):
+                    nbOffersByTypes[o] += 1
+                else:
+                    nbOffersByTypes[o] = 1
+
+        template = env.get_template('resultNbOffersByCities.html')    
+        
+        return render_template(template, result1 = nbOffersByTypes)

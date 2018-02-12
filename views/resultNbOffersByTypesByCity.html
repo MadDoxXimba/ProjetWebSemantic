@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <style type="text/css">
+      #mynetwork {
+          width: 95%;
+          height: 500px;
+          border: 1px solid lightgray;
+      }
+    </style>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        // create some edges
+        var edges = JSON.parse('{{ result1 | tojson | safe }}');
+        // create some nodes
+        var nodes = JSON.parse('{{ result2 | tojson | safe }}');
+        console.log(nodes);
+        
+        function draw() {
+            
+            // create a network
+            var container = document.getElementById('mynetwork');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var options = {
+                nodes: {
+                    shape: 'dot',
+                    size: 16
+                },
+                physics: {
+                    forceAtlas2Based: {
+                        gravitationalConstant: -26,
+                        centralGravity: 0.005,
+                        springLength: 230,
+                        springConstant: 0.18
+                    },
+                    maxVelocity: 146,
+                    solver: 'forceAtlas2Based',
+                    timestep: 0.35,
+                    stabilization: {iterations: 150}
+                }
+            };
+            var network = new vis.Network(container, data, options);
+        }
+    </script>
+</head>
+
+<body onload="draw()">
+  <p>
+      Graphe RDF des activités dans la ville de {{ city }}
+  </p>
+
+  <div id="mynetwork"></div>
+
+    <table border = 1>
+        <tr>
+            <th> Nombre d'activités par type dans la ville de {{ city }} </th>
+            {% for o in result1 %}
+            <td>
+              <p>{{ o }}</p>
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+  </body>
+</html>
