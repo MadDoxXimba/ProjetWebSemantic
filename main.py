@@ -13,6 +13,7 @@ env = Environment(
 
 
 fusekiURL = "http://jyc.northeurope.cloudapp.azure.com:8085/WebSemantic/query"
+#fusekiURL = "https://herokufuseki.herokuapp.com/WebSemantic/query"
 
 app = Flask(__name__)
 
