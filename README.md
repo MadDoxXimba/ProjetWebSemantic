@@ -12,12 +12,12 @@
 
 ## Local debugging
     
-Place in root directory (CMD or Powershell or Bash) - application must already be deployed, if not please follow this tutorial: https://devcenter.heroku.com/articles/git 
+Place in root directory (CMD or Powershell or Bash) - application must already be deployed, if not please follow this tutorial: https://devcenter.heroku.com/articles/git (if app is already deployed: skip to step 4)
 
     1) install heroku cli
     2) create heroku account
     3) heroku login (with your credentials)
-    4) install virtualenv and virtualenvwrapper (see next section for guidelines)
+    4) install virtualenv and virtualenvwrapper (see next section for guidelines) - if you don't want to use virtualenv, this step is not necessary! skip to step 6
     5) create virtualenv for your application with python 3.6.2 (see next section for guidelines)
     5) workon (yourvirtualenv_name)
     6) cd in clone directory
