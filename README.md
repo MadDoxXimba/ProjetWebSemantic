@@ -63,4 +63,4 @@ in $WORKON_HOME
     http://www.postgresqltutorial.com/postgresql-python
 
 
-Polytech Nantes
+By students of Polytech Nantes
