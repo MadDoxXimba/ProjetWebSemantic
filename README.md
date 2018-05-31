@@ -61,3 +61,6 @@ in $WORKON_HOME
 ## Tutorials
 
     http://www.postgresqltutorial.com/postgresql-python
+
+
+Polytech Nantes
